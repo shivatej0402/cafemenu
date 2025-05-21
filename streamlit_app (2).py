@@ -133,7 +133,22 @@ elif st.session_state.page == "menu":
                         st.session_state.last_added_qty = qty
                     # Show success message just under the button if this item was last added
                     if st.session_state.last_added_item == btn_key:
-                        st.success(f"✅ Added {st.session_state.last_added_qty} x {item['name']} to cart")
+                        st.markdown(
+        f"""
+        <div style="
+            background-color: white; 
+            color: green; 
+            padding: 8px; 
+            border-radius: 5px; 
+            border: 1px solid green;
+            margin-top: 5px;
+            font-weight: bold;
+        ">
+            ✅ Added {st.session_state.last_added_qty} x {item['name']} to cart
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
 
     if st.button("⬅️ Back to Home"):
         st.session_state.page = "home"
