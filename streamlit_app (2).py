@@ -2,6 +2,18 @@ import streamlit as st
 
 st.set_page_config(page_title="Cafe Menu", layout="wide")
 
+# Set the full background to pink
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #ffe6f0;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Define menu
 menu = {
     "Starters": [
