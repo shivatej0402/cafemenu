@@ -143,6 +143,7 @@ elif st.session_state.page == "menu":
             border: 1px solid green;
             margin-top: 5px;
             font-weight: bold;
+            margin-bottom: 15px;
         ">
             ✅ Added {st.session_state.last_added_qty} x {item['name']} to cart
         </div>
@@ -171,7 +172,23 @@ elif st.session_state.page == "checkout":
     st.markdown(f"### 🧮 Total: ₹{total}")
 
     if st.button("✅ Confirm Order"):
-        st.success("🎉 Order placed successfully!")
+        st.markdown(
+        """
+        <div style="
+            background-color: white;
+            color: green;
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid green;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        ">
+            🎉 Order placed successfully!
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
         st.session_state.cart.clear()
         st.session_state.page = "home"
         st.session_state.last_added_item = None
