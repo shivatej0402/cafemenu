@@ -2,12 +2,21 @@ import streamlit as st
 
 st.set_page_config(page_title="Cafe Menu", layout="wide")
 
-# Set the full background to pink
+# Set the full background plus sidebar to pink
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #ffe6f0;
+    }
+    .css-1d391kg, .css-1lcbmhc {  /* Older versions */
+        background-color: #ffe6f0 !important;
+    }
+    .css-6qob1r {  /* Main content area */
+        background-color: #ffe6f0 !important;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #ffe6f0 !important;
     }
     </style>
     """,
