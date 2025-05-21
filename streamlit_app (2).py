@@ -171,11 +171,12 @@ elif st.session_state.page == "checkout":
 
     if st.button("✅ Confirm Order"):
         st.success("🎉 Order placed successfully!")
-        st.balloons()  # 🎈 Show balloons animation
         st.session_state.cart.clear()
         st.session_state.page = "home"
         st.session_state.last_added_item = None
         st.session_state.last_added_qty = 0
+
+        
 
     if st.button("⬅️ Modify Cart"):
         st.session_state.page = "menu"
