@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 st.set_page_config(page_title="Cafe Menu", layout="wide")
 
@@ -9,10 +10,10 @@ st.markdown(
     .stApp {
         background-color: #ffe6f0;
     }
-    .css-1d391kg, .css-1lcbmhc {  /* Older versions */
+    .css-1d391kg, .css-1lcbmhc {
         background-color: #ffe6f0 !important;
     }
-    .css-6qob1r {  /* Main content area */
+    .css-6qob1r {
         background-color: #ffe6f0 !important;
     }
     [data-testid="stSidebar"] {
@@ -43,7 +44,7 @@ menu = {
     ],
 }
 
-# Initialize session state
+# Session state initialization
 if "page" not in st.session_state:
     st.session_state.page = "home"
 if "cart" not in st.session_state:
@@ -54,6 +55,16 @@ if "last_added_item" not in st.session_state:
     st.session_state.last_added_item = None
 if "last_added_qty" not in st.session_state:
     st.session_state.last_added_qty = 0
+if "added_time" not in st.session_state:
+    st.session_state.added_time = None
+
+# Remove the message after 1 second
+if st.session_state.last_added_item and st.session_state.added_time:
+    if time.time() - st.session_state.added_time > 1:
+        st.session_state.last_added_item = None
+        st.session_state.last_added_qty = 0
+        st.session_state.added_time = None
+        st.rerun()
 
 # Homepage
 if st.session_state.page == "home":
@@ -62,7 +73,6 @@ if st.session_state.page == "home":
     st.markdown("### Serving delicious food since 2020 🍽️")
     if st.button("View Menu"):
         st.session_state.page = "menu"
-        # Reset last added item on navigation
         st.session_state.last_added_item = None
         st.session_state.last_added_qty = 0
 
@@ -71,7 +81,6 @@ elif st.session_state.page == "menu":
     st.title("📋 Menu")
     st.sidebar.title("🛒 Your Cart")
 
-    # Group cart items by name to sum quantities
     grouped_cart = {}
     for item in st.session_state.cart:
         key = item["name"]
@@ -90,11 +99,10 @@ elif st.session_state.page == "menu":
         with col2:
             if st.sidebar.button("❌", key="remove_" + item["name"]):
                 st.session_state.cart = [i for i in st.session_state.cart if i["name"] != item["name"]]
-                st.experimental_rerun()
+                st.rerun()
 
     st.sidebar.markdown(f"**Total: ₹{total}**")
 
-    # Checkout form
     st.sidebar.markdown("---")
     st.sidebar.subheader("👤 Your Details")
     st.session_state.customer_info["name"] = st.sidebar.text_input("Name", value=st.session_state.customer_info["name"])
@@ -110,10 +118,8 @@ elif st.session_state.page == "menu":
             st.session_state.last_added_item = None
             st.session_state.last_added_qty = 0
 
-    # Search bar
     search_query = st.text_input("🔍 Search for items").lower()
 
-    # Category tabs
     tabs = st.tabs(list(menu.keys()))
     for tab, category in zip(tabs, menu.keys()):
         with tab:
@@ -131,26 +137,27 @@ elif st.session_state.page == "menu":
                         st.session_state.cart.append({**item, "qty": qty})
                         st.session_state.last_added_item = btn_key
                         st.session_state.last_added_qty = qty
-                    # Show success message just under the button if this item was last added
+                        st.session_state.added_time = time.time()
+                        st.rerun()
+
                     if st.session_state.last_added_item == btn_key:
                         st.markdown(
-        f"""
-        <div style="
-            background-color: white; 
-            color: green; 
-            padding: 5px; 
-            border-radius: 9px; 
-            border: 1px solid green;
-            margin-top: 5px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        ">
-            ✅ Added {st.session_state.last_added_qty} x {item['name']} to cart
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
-   
+                            f"""
+                            <div style="
+                                background-color: white; 
+                                color: green; 
+                                padding: 5px; 
+                                border-radius: 9px; 
+                                border: 1px solid green;
+                                margin-top: 5px;
+                                font-weight: bold;
+                                margin-bottom: 15px;
+                            ">
+                                ✅ Added {st.session_state.last_added_qty} x {item['name']} to cart
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
 
     if st.button("⬅️ Back to Home"):
         st.session_state.page = "home"
@@ -162,7 +169,6 @@ elif st.session_state.page == "checkout":
     st.title("🧾 Order Summary")
 
     st.markdown(f"**👤 Customer:** {st.session_state.customer_info['name']}  \n📱 **Mobile:** {st.session_state.customer_info['mobile']}")
-
     st.markdown("---")
     total = 0
     for item in st.session_state.cart:
@@ -173,31 +179,30 @@ elif st.session_state.page == "checkout":
 
     if st.button("✅ Confirm Order"):
         st.markdown(
-        """
-        <div style="
-            background-color: white;
-            color: green;
-            padding: 8px;
-            border-radius: 8px;
-            border: 2px solid green;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 15px;
-        ">
-            🎉 Order placed successfully!
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            """
+            <div style="
+                background-color: white;
+                color: green;
+                padding: 8px;
+                border-radius: 8px;
+                border: 2px solid green;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 15px;
+            ">
+                🎉 Order placed successfully!
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
         st.session_state.cart.clear()
         st.session_state.page = "home"
         st.session_state.last_added_item = None
         st.session_state.last_added_qty = 0
-        
-
-        
+        st.session_state.added_time = None
 
     if st.button("⬅️ Modify Cart"):
         st.session_state.page = "menu"
         st.session_state.last_added_item = None
         st.session_state.last_added_qty = 0
+        st.session_state.added_time = None
