@@ -1,8 +1,6 @@
 import streamlit as st
 
 st.set_page_config(page_title="Cafe Menu", layout="wide")
-st.title("☕ Welcome to Brew & Bite Café")
-st.subheader("Browse by category")
 
 # Define menu
 menu = {
@@ -24,14 +22,125 @@ menu = {
     ],
 }
 
-# Tabs for each category
-tabs = st.tabs(list(menu.keys()))
-for tab, category in zip(tabs, menu.keys()):
-    with tab:
-        st.markdown(f"## {category}")
-        cols = st.columns(2)
-        for i, item in enumerate(menu[category]):
-            with cols[i % 2]:
-                st.image(item["image"], width=200)
-                st.markdown(f"**{item['name']}**  \n💰 ₹{item['price']}")
-                st.markdown("---")
+# Initialize session state
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+if "cart" not in st.session_state:
+    st.session_state.cart = []
+if "customer_info" not in st.session_state:
+    st.session_state.customer_info = {"name": "", "mobile": ""}
+if "last_added_item" not in st.session_state:
+    st.session_state.last_added_item = None
+if "last_added_qty" not in st.session_state:
+    st.session_state.last_added_qty = 0
+
+# Homepage
+if st.session_state.page == "home":
+    st.title("☕ Welcome to Brew & Bite Café")
+    st.image("https://www.cafeflorista.com/_next/image?url=%2Fimages%2Fcafe%2FIMG-20240922-WA0015.jpg&w=640&q=75", use_container_width=True)
+    st.markdown("### Serving delicious food since 2020 🍽️")
+    if st.button("View Menu"):
+        st.session_state.page = "menu"
+        # Reset last added item on navigation
+        st.session_state.last_added_item = None
+        st.session_state.last_added_qty = 0
+
+# Menu page
+elif st.session_state.page == "menu":
+    st.title("📋 Menu")
+    st.sidebar.title("🛒 Your Cart")
+
+    # Group cart items by name to sum quantities
+    grouped_cart = {}
+    for item in st.session_state.cart:
+        key = item["name"]
+        if key in grouped_cart:
+            grouped_cart[key]["qty"] += item["qty"]
+        else:
+            grouped_cart[key] = item.copy()
+
+    total = 0
+    for name, item in grouped_cart.items():
+        item_total = item["price"] * item["qty"]
+        total += item_total
+        col1, col2 = st.sidebar.columns([3, 1])
+        with col1:
+            st.sidebar.write(f"{item['name']} x {item['qty']} = ₹{item_total}")
+        with col2:
+            if st.sidebar.button("❌", key="remove_" + item["name"]):
+                st.session_state.cart = [i for i in st.session_state.cart if i["name"] != item["name"]]
+                st.experimental_rerun()
+
+    st.sidebar.markdown(f"**Total: ₹{total}**")
+
+    # Checkout form
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("👤 Your Details")
+    st.session_state.customer_info["name"] = st.sidebar.text_input("Name", value=st.session_state.customer_info["name"])
+    st.session_state.customer_info["mobile"] = st.sidebar.text_input("Mobile", value=st.session_state.customer_info["mobile"])
+
+    if st.sidebar.button("Proceed to Checkout"):
+        if not st.session_state.customer_info["name"] or not st.session_state.customer_info["mobile"]:
+            st.sidebar.warning("Please fill in your name and mobile.")
+        elif not grouped_cart:
+            st.sidebar.warning("Your cart is empty.")
+        else:
+            st.session_state.page = "checkout"
+            st.session_state.last_added_item = None
+            st.session_state.last_added_qty = 0
+
+    # Search bar
+    search_query = st.text_input("🔍 Search for items").lower()
+
+    # Category tabs
+    tabs = st.tabs(list(menu.keys()))
+    for tab, category in zip(tabs, menu.keys()):
+        with tab:
+            st.markdown(f"## {category}")
+            cols = st.columns(2)
+            filtered_items = [item for item in menu[category] if search_query in item["name"].lower()]
+            for i, item in enumerate(filtered_items):
+                with cols[i % 2]:
+                    st.image(item["image"], width=200)
+                    st.markdown(f"**{item['name']}**  \n💰 ₹{item['price']}")
+                    qty_key = "qty_" + item["name"] + category
+                    qty = st.number_input(f"Quantity - {item['name']}", min_value=1, max_value=10, value=1, key=qty_key)
+                    btn_key = item["name"] + category
+                    if st.button(f"Add to Cart - {item['name']}", key=btn_key):
+                        st.session_state.cart.append({**item, "qty": qty})
+                        st.session_state.last_added_item = btn_key
+                        st.session_state.last_added_qty = qty
+                    # Show success message just under the button if this item was last added
+                    if st.session_state.last_added_item == btn_key:
+                        st.success(f"✅ Added {st.session_state.last_added_qty} x {item['name']} to cart")
+
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "home"
+        st.session_state.last_added_item = None
+        st.session_state.last_added_qty = 0
+
+# Checkout page
+elif st.session_state.page == "checkout":
+    st.title("🧾 Order Summary")
+
+    st.markdown(f"**👤 Customer:** {st.session_state.customer_info['name']}  \n📱 **Mobile:** {st.session_state.customer_info['mobile']}")
+
+    st.markdown("---")
+    total = 0
+    for item in st.session_state.cart:
+        subtotal = item["price"] * item["qty"]
+        total += subtotal
+        st.markdown(f"{item['qty']} x {item['name']} = ₹{subtotal}")
+    st.markdown(f"### 🧮 Total: ₹{total}")
+
+    if st.button("✅ Confirm Order"):
+        st.success("🎉 Order placed successfully!")
+        st.session_state.cart.clear()
+        st.session_state.page = "home"
+        st.session_state.last_added_item = None
+        st.session_state.last_added_qty = 0
+
+    if st.button("⬅️ Modify Cart"):
+        st.session_state.page = "menu"
+        st.session_state.last_added_item = None
+        st.session_state.last_added_qty = 0
