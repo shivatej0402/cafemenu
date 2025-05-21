@@ -138,8 +138,8 @@ elif st.session_state.page == "menu":
         <div style="
             background-color: white; 
             color: green; 
-            padding: 8px; 
-            border-radius: 5px; 
+            padding: 5px; 
+            border-radius: 9px; 
             border: 1px solid green;
             margin-top: 5px;
             font-weight: bold;
@@ -149,6 +149,7 @@ elif st.session_state.page == "menu":
         """, 
         unsafe_allow_html=True
     )
+   
 
     if st.button("⬅️ Back to Home"):
         st.session_state.page = "home"
@@ -175,6 +176,7 @@ elif st.session_state.page == "checkout":
         st.session_state.page = "home"
         st.session_state.last_added_item = None
         st.session_state.last_added_qty = 0
+        
 
         
 
