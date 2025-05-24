@@ -156,12 +156,13 @@ elif st.session_state.page == "menu":
                     )
                     st.session_state.just_added = False
 
+    # Floating cart that triggers a hidden button
     total_items = sum(item["qty"] for item in grouped_cart.values())
     total_price = sum(item["qty"] * item["price"] for item in grouped_cart.values())
     if total_items > 0:
-        st.markdown(f"""
+        st.markdown("""
             <style>
-                .floating-cart {{
+                .floating-cart {
                     position: fixed;
                     bottom: 20px;
                     right: 20px;
@@ -175,12 +176,17 @@ elif st.session_state.page == "menu":
                     font-size: 16px;
                     border: 2px solid #ffcccc;
                     cursor: pointer;
-                }}
+                }
             </style>
-            <div class="floating-cart" onclick="document.querySelector('[data-testid=\"stSidebar\"]').scrollIntoView({{behavior: 'smooth'}})">
-                🛒 {total_items} item(s) | ₹{total_price}
+            <div class="floating-cart" onclick="document.getElementById('hidden_checkout_btn').click();">
+                🛒 """ + f"{total_items} item(s) | ₹{total_price}" + """
             </div>
         """, unsafe_allow_html=True)
+
+        # Hidden button to navigate to checkout
+        if st.button("Go to Checkout", key="hidden_checkout_btn"):
+            st.session_state.page = "checkout"
+            st.rerun()
 
     if st.button("⬅️ Back to Home"):
         st.session_state.page = "home"
