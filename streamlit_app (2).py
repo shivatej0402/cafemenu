@@ -52,7 +52,7 @@ menu = {
     "Main Course": [
         {"name": "Paneer Butter Masala", "price": 220, "image": "https://www.ruchiskitchen.com/wp-content/uploads/2020/12/Paneer-butter-masala-recipe-3-500x500.jpg"},
         {"name": "Chicken Biryani", "price": 250, "image": "https://j6e2i8c9.delivery.rocketcdn.me/wp-content/uploads/2020/09/Chicken-Biryani-Recipe-01-1.jpg"},
-        {"name": "Dal Makhani", "price": 200, "image": "https://www.whiskaffair.com/wp-content/uploads/2020/07/Dal-Makhani-2-3.jpg"},
+        {"name": "Dal Makhani", "price": 200, "image": "https://cdn.example.com/images/dal-makhani.jpg"},
         {"name": "Butter Naan", "price": 40, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/07/butter-naan-recipe-1.jpg"},
         {"name": "Jeera Rice", "price": 90, "image": "https://www.whiskaffair.com/wp-content/uploads/2020/08/Jeera-Rice-2-3.jpg"},
         {"name": "Shahi Paneer", "price": 230, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/04/shahi-paneer-1.jpg"},
