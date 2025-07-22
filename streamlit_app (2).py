@@ -53,7 +53,7 @@ menu = {
         {"name": "Paneer Butter Masala", "price": 220, "image": "https://www.ruchiskitchen.com/wp-content/uploads/2020/12/Paneer-butter-masala-recipe-3-500x500.jpg"},
         {"name": "Chicken Biryani", "price": 250, "image": "https://j6e2i8c9.delivery.rocketcdn.me/wp-content/uploads/2020/09/Chicken-Biryani-Recipe-01-1.jpg"},
         {"name": "Dal Makhani", "price": 200, "image": "https://media.istockphoto.com/id/1170374719/photo/dal-makhani-at-dark-background.jpg?s=612x612&w=0&k=20&c=49yLaUAE2apakVk2AAiRQimZd98WtSjIQ0hzCzWsmns="},
-        {"name": "Butter Naan", "price": 40, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/07/butter-naan-recipe-1.jpg"},
+        {"name": "Butter Naan", "price": 40, "image": "https://media.istockphoto.com/id/1143530040/photo/indian-naan-bread-with-garlic-butter-on-wooden-table.jpg?s=612x612&w=0&k=20&c=71SgbJtnfiHUiud1oGxnhiZsx5nuivWwZt8DlIk8hi0="},
         {"name": "Jeera Rice", "price": 90, "image": "https://www.whiskaffair.com/wp-content/uploads/2020/08/Jeera-Rice-2-3.jpg"},
         {"name": "Shahi Paneer", "price": 230, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/04/shahi-paneer-1.jpg"},
         {"name": "Veg Pulao", "price": 150, "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/05/vegetable-pulao-recipe.jpg"},
