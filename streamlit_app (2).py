@@ -30,8 +30,8 @@ menu = {
     "Starters": [
         {"name": "Veg Spring Roll", "price": 120, "image": "https://www.womansworld.com/wp-content/uploads/2023/09/airfryer13.jpg"},
         {"name": "French Fries", "price": 100, "image": "https://www.cuisinart.com/dw/image/v2/ABAF_PRD/on/demandware.static/-/Sites-us-cuisinart-sfra-Library/default/dw3a257599/images/recipe-Images/french-fries-airfryer-recipe.jpg?sw=1200&sh=1200&sm=fit"},
-        {"name": "Paneer Tikka", "price": 150, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/03/paneer-tikka-1.jpg"},
-        {"name": "Chicken Lollipop", "price": 160, "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/07/chicken-lollipop.jpg"},
+        {"name": "Paneer Tikka", "price": 150, "image": "https://carveyourcraving.com/wp-content/uploads/2021/10/paneer-tikka-skewers.jpg"},
+        {"name": "Chicken Lollipop", "price": 160, "image": "https://www.bradleysmoker.com/cdn/shop/files/Screen-Shot-2021-08-19-at-11_26_55-AM.png?v=6727898055398431908"},
         {"name": "Hara Bhara Kebab", "price": 130, "image": "https://www.cookingcarnival.com/wp-content/uploads/2020/07/Hara-Bhara-Kabab-1.jpg"},
         {"name": "Cheese Balls", "price": 140, "image": "https://www.cookclickndevour.com/wp-content/uploads/2017/06/cheese-balls-recipe-2.jpg"},
         {"name": "Corn Cheese Nuggets", "price": 120, "image": "https://i.ytimg.com/vi/YcB3T6T-0ks/maxresdefault.jpg"},
