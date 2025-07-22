@@ -74,7 +74,7 @@ menu = {
     "smoothies": [
         {"name": "Mango Smoothie", "price": 80, "image": "https://vaya.in/recipes/wp-content/uploads/2017/09/Mango-Smoothie_1-1.jpg"},
         {"name": "Dark Chocolate Iced Coffee", "price": 90, "image": "https://lorcoffee.com/cdn/shop/articles/Dark-Chocolate-Ice-Coffee-with-Provocateur-exc.jpg"},
-        {"name": "Strawberry Banana", "price": 85, "image": "/images/smoothies/strawberry-banana.jpg"},
+        {"name": "Strawberry Banana", "price": 85, "image": "https://gimmedelicious.com/wp-content/uploads/2024/08/Strawberry-Banana-Smoothie-SQ-500x500.jpg"},
         {"name": "Blueberry Oat", "price": 95, "image": "https://www.wellplated.com/wp-content/uploads/2021/06/Blueberry-Oat-Smoothie.jpg"},
         {"name": "Avocado Green", "price": 100, "image": "https://cdn.loveandlemons.com/wp-content/uploads/2021/07/green-smoothie-580x869.jpg"},
         {"name": "Pineapple Mint", "price": 80, "image": "https://www.runningtothekitchen.com/wp-content/uploads/2020/07/pineapple-mint-smoothie-480x480.jpg"},
