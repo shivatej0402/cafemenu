@@ -91,7 +91,7 @@ menu = {
         {"name": "Chikoo Milk", "price": 80, "image": "https://i.pinimg.com/474x/d0/56/e5/d056e5074172473d151b437dbeee4303.jpg"},
         {"name": "Coffee Banana", "price": 90, "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuTQvw4vNMm__ktVFO4eG345I54UL4ETCFsw&s"},
         {"name": "Fig Honey", "price": 95, "image": "https://www.thestatesman.com/wp-content/uploads/2019/04/shake-1024x683.jpg"},
-        {"name": "Watermelon Slush", "price": 70, "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pickuplimes.com%2Frecipe%2Ffrosted-watermelon-rosemary-slushy-422&psig=AOvVaw0vAaaU4QKw8oRJsiyCb3G1&ust=1753367134428000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjW6omY044DFQAAAAAdAAAAABAE"},
+        {"name": "Watermelon Slush", "price": 70, "image": "https://assets.epicurious.com/photos/644abadc052d2cb5b596df76/1:1/pass/WatermelonMargarita_RECIPE_042623_52527_VOG_final.jpg"},
     ],
     "Desserts": [
         {"name": "Chocolate Brownie", "price": 150, "image": "https://www.spendwithpennies.com/wp-content/uploads/2016/09/Hot-Fudge-Slow-Cooker-Brownies-21.jpg"},
