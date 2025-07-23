@@ -96,7 +96,7 @@ menu = {
     "Desserts": [
         {"name": "Chocolate Brownie", "price": 150, "image": "https://www.spendwithpennies.com/wp-content/uploads/2016/09/Hot-Fudge-Slow-Cooker-Brownies-21.jpg"},
         {"name": "Trifle", "price": 60, "image": "https://media.restless.co.uk/uploads/2021/05/trifle.jpg"},
-        {"name": "Gulab Jamun", "price": 70, "image": "https://www.vegrecipesofindia.com/wp-content/uploads/2021/04/gulab-jamun-recipe-1.jpg"},
+        {"name": "Gulab Jamun", "price": 70, "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjkIO7Q_jiTXbVcpR2vSl1yRZZgW--Lr9kKw&s"},
         {"name": "Rasmalai", "price": 90, "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/07/rasmalai.jpg"},
         {"name": "Cheesecake", "price": 120, "image": "https://sallysbakingaddiction.com/wp-content/uploads/2018/05/classic-cheesecake.jpg"},
         {"name": "Cupcake", "price": 60, "image": "https://www.cookingclassy.com/wp-content/uploads/2020/06/vanilla-cupcakes-6.jpg"},
